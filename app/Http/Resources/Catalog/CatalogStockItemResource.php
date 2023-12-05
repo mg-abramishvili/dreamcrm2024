@@ -5,22 +5,31 @@ namespace App\Http\Resources\Catalog;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Dollar;
 
-class CatalogItemStockItemResource extends JsonResource
+class CatalogStockItemResource extends JsonResource
 {
+    private $currentUsdKurs;
+
+    public function __construct($resource, $currentUsdKurs)
+    {
+        parent::__construct($resource);
+        $this->resource = $resource;
+
+        $this->currentUsdKurs = Dollar::find(1)->kurs;
+    }
+
     public function toArray($request)
     {
-        $currentUsdKurs = Dollar::find(1)->kurs;
         $latestBalance = $this->balances()->orderBy('date', 'desc')->first();
 
         if($latestBalance)
         {
-            $kurs = max($currentUsdKurs, $latestBalance->usd_kurs);
+            $kurs = max($this->currentUsdKurs, $latestBalance->usd_kurs);
             
             $price = ($latestBalance->pre_usd * $kurs) + $latestBalance->pre_rub;
 
             $price = (ceil($price / 50)) * 50;
         }
-        
+
         return [
             'id' => $this->id,
             'name' => $this->name,
