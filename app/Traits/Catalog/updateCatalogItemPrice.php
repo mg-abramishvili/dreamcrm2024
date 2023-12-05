@@ -25,7 +25,10 @@ trait updateCatalogItemPrice
 
             $kurs = $this->compareKurs($latestBalance, $currentUsdKurs);
     
-            $price += $this->getPrice($latestBalance, $kurs);
+            $preUsd += $latestBalance ? $latestBalance->pre_usd : 0;
+            $preRub += $latestBalance ? $latestBalance->pre_rub : 0;
+
+            $price += $this->getPrice($latestBalance, $kurs) * $stockItem->pivot->quantity;
         }
 
         $catalogItem->pre_usd = $preUsd;

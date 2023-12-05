@@ -4,9 +4,9 @@ namespace App\Traits\Stock;
 
 trait getLatestBalance
 {
-    public function getLatestBalance($catalogItem)
+    public function getLatestBalance($stockItem)
     {
-        $latestBalance = $catalogItem->balances()->orderBy('date', 'desc')->first();
+        $latestBalance = $stockItem->balances()->orderBy('date', 'desc')->first();
 
         return $latestBalance;
     }

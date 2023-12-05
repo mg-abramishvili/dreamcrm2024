@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './components/Home.vue'
 
+import Calculations from './components/calculations/Index.vue'
+import CreateCalculation from './components/calculations/Create.vue'
+
 import CatalogBoxes from './components/catalog/boxes/Index.vue'
 import CatalogBox from './components/catalog/boxes/Box.vue'
 
@@ -21,6 +24,16 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home
+    },
+    {
+        path: '/calculations',
+        name: 'Calculations',
+        component: Calculations
+    },
+    {
+        path: '/calculations/create',
+        name: 'CreateCalculation',
+        component: CreateCalculation
     },
     {
         path: '/catalog',

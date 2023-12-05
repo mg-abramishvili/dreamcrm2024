@@ -13,6 +13,8 @@ class CatalogBoxResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'price' => $this->price,
+            'pre_rub' => $this->pre_rub,
+            'pre_usd' => $this->pre_usd,
             'description' => $this->description,
             'manager_description' => $this->manager_description,
             'comment' => $this->comment,

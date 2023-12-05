@@ -12,6 +12,11 @@ Route::prefix("api")->middleware('auth')->group(function() {
         return Auth::user();
     });
 
+    // CALCULATIONS
+    Route::get('calculations', [App\Http\Controllers\CalculationController::class, 'index']);
+    Route::post('calculations', [App\Http\Controllers\CalculationController::class, 'store']);
+    Route::get('calculation/{id}', [App\Http\Controllers\CalculationController::class, 'calculation']);
+
     // CATALOG BOXES
     Route::get('catalog-boxes', [App\Http\Controllers\CatalogBoxController::class, 'index']);
     Route::get('catalog-box/{id}', [App\Http\Controllers\CatalogBoxController::class, 'box']);
@@ -41,6 +46,7 @@ Route::prefix("api")->middleware('auth')->group(function() {
 
     // TEST
     Route::get('test', [App\Http\Controllers\CatalogItemController::class, 'autoUpdatePrices']);
+    Route::get('test2', [App\Http\Controllers\CatalogBoxController::class, 'autoUpdatePrices']);
 });
 
 Route::get('{any}', function () {

@@ -2,30 +2,23 @@
     <div class="header">
         <div class="header-name">
             <RouterLink
-                :to="{name: 'Catalog'}"
+                :to="{name: 'Calculations'}"
                 class="header-back-button">
             </RouterLink>
 
-            <h1>Корпуса</h1>
-        </div>
-
-        <div class="header-buttons">
-            <a href="#" class="btn btn-primary">Добавить</a>
+            <h1>Новый расчёт</h1>
         </div>
     </div>
 
     <div class="content">
         <Loader v-if="views.loading" />
-
-        <div v-if="!views.loading" class="content-table">
-            <table class="table table-clickable">
-                <tbody>
-                    <tr @click="goToBox(box.id)" v-for="box in boxes">
-                        <td>{{ box.name }}</td>
-                        <td>{{ box.price }}</td>
-                    </tr>
-                </tbody>
-            </table>
+        
+        <div v-if="!views.loading" class="calculation-creator">
+            <ul>
+                <li v-for="box in boxes">
+                    {{ box.name }}, {{ box.pre_rub }}, {{ box.pre_usd }}, {{ box.price }}
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -52,9 +45,6 @@ export default {
 
                 this.views.loading = false
             })
-        },
-        goToBox(id) {
-            this.$router.push({name: 'CatalogBox', params: {id: id}})
         },
     },
 }
