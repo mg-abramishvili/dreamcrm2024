@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace App\Traits\Catalog;
 use App\Traits\Stock\getLatestBalance;
 use App\Traits\Stock\compareKurs;
 use App\Traits\Stock\getPrice;

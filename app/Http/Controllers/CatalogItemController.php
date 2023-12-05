@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CatalogItem;
 use App\Models\Dollar;
 use App\Http\Resources\Catalog\CatalogItemResource;
-use App\Traits\updateCatalogItemPrice;
+use App\Traits\Catalog\updateCatalogItemPrice;
 use Illuminate\Http\Request;
 
 class CatalogItemController extends Controller
