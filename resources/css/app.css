@@ -47,6 +47,9 @@ a {
 	background-size: contain;
 	background-repeat: no-repeat;
 }
+.text-primary {
+	color: #fd7b38 !important;
+}
 .form-control {
 	border: 1px solid #dbd6cb;
 	border-radius: 4px;
@@ -55,6 +58,9 @@ a {
 	outline: none;
 	box-shadow: none;
 	border-color: #fd7b38;
+}
+.text-more-muted {
+	color: #b3b5ba !important;
 }
 
 /* MAIN LAYOUT */
@@ -320,6 +326,15 @@ main {
 }
 .content .tab-content .table tbody tr td {
 	padding: 10px 0;
+}
+.stock-all-selector-item .btn {
+	text-align: left;
+	border: 0;
+	border-bottom: 1px solid #eeeae1;
+	border-radius: 0;
+}
+.stock-all-selector-item .btn:hover {
+	background-color: rgba(253, 123, 58, 0.25);
 }
 /* CONTENT */
 

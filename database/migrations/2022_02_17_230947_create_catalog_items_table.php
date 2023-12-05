@@ -15,9 +15,7 @@ class CreateCatalogItemsTable extends Migration
             $table->integer('price')->default(0);
             $table->integer('pre_rub')->default(0);
             $table->integer('pre_usd')->default(0);
-            $table->longText('description')->nullable();
-            $table->longText('manager_description')->nullable();
-            $table->text('comment')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

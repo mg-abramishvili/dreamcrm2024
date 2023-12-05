@@ -2,7 +2,7 @@
     <div class="header">
         <div class="header-name">
             <RouterLink
-                :to="{name: 'Stock'}"
+                :to="{name: 'Catalog'}"
                 class="header-back-button">
             </RouterLink>
 
@@ -19,20 +19,10 @@
 
         <div v-if="!views.loading" class="content-table">
             <table class="table table-clickable">
-                <thead>
-                    <tr>
-                        <th>Название</th>
-                        <th>Остаток (общий)</th>
-                        <th>Последняя цена</th>
-                        <th>Нехватка</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr @click="goToItem(item.id)" v-for="item in category.items">
                         <td>{{ item.name }}</td>
-                        <td :class="{'text-success': item.balance_qty > 0, 'text-more-muted': item.balance_qty == 0}">{{ item.balance_qty }}</td>
-                        <td>{{ item.latest_balance_price }} <small class="d-block text-muted">{{ item.latest_balance_date }}</small></td>
-                        <td>{{ item.needs }}</td>
+                        <td>{{ item.price }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -56,7 +46,7 @@ export default {
     },
     methods: {
         loadCategory() {
-            axios.get(`/api/stock-category/${this.$route.params.id}`)
+            axios.get(`/api/catalog-category/${this.$route.params.id}`)
             .then(response => {
                 this.category = response.data
 
@@ -64,7 +54,7 @@ export default {
             })
         },
         goToItem(id) {
-            this.$router.push({name: 'StockItem', params: {id: id}})
+            this.$router.push({name: 'CatalogItem', params: {id: id}})
         },
     },
 }
