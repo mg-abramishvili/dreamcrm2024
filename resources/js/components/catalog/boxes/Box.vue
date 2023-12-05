@@ -13,7 +13,7 @@
             <!-- <a href="#" class="btn btn-primary"></a> -->
         </div>
     </div>
-
+    
     <div class="content">
         <Loader v-if="views.loading" />
 
@@ -25,13 +25,6 @@
                         @click="views.currentTab = 'general'"
                         :class="{'active': views.currentTab == 'general'}">
                             Общая информация
-                    </button>
-
-                    <button
-                        class="nav-link"
-                        @click="views.currentTab = 'type'"
-                        :class="{'active': views.currentTab == 'type'}">
-                            Тип
                     </button>
 
                     <button
@@ -66,31 +59,92 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-12">
+                        <div class="col-12">
                             <div class="tab-content-line">
                                 <strong>Описание:</strong>
                                 {{ box.description ? box.description: '-' }}
-
+    
                                 <button
                                     @click="views.editPanel ='description'"
                                     class="btn-content-edit">
                                 </button>
-
+    
                                 <ChangeDescription v-if="views.editPanel == 'description'" />
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="tab-content-line">
+                                <strong>Описание для менеджеров:</strong>
+                                {{ box.manager_description ? box.manager_description: '-' }}
+    
+                                <button
+                                    @click="views.editPanel ='description'"
+                                    class="btn-content-edit">
+                                </button>
+    
+                                <ChangeDescription v-if="views.editPanel == 'description'" />
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="tab-content-line">
+                                <strong>Комментарий:</strong>
+                                {{ box.comment ? box.comment: '-' }}
+    
+                                <button
+                                    @click="views.editPanel ='description'"
+                                    class="btn-content-edit">
+                                </button>
+    
+                                <ChangeDescription v-if="views.editPanel == 'description'" />
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="tab-content-line">
+                                <strong>Глубина, мм:</strong>
+                                {{ box.length ? box.length: '-' }}
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="tab-content-line">
+                                <strong>Ширина, мм:</strong>
+                                {{ box.width ? box.width: '-' }}
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="tab-content-line">
+                                <strong>Высота, мм:</strong>
+                                {{ box.height ? box.height: '-' }}
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="tab-content-line">
+                                <strong>Вес, кг:</strong>
+                                {{ box.weight ? box.weight: '-' }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane" :class="{'show active': views.currentTab == 'type'}">
-                    type
-                </div>
 
                 <div class="tab-pane" :class="{'show active': views.currentTab == 'stock'}">
-                    <Stock :box="box" />
+                    <StockTab :box="box" />
                 </div>
 
                 <div class="tab-pane" :class="{'show active': views.currentTab == 'price'}">
-                    price
+                    <div class="form-group">
+                        <label class="form-label">Себестоимость Склад</label>
+                        <input :value="stockPrice" type="number" class="form-control" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Себестоимость Сборка</label>
+                        <input type="number" class="form-control">
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,12 +154,16 @@
 <script>
 import ChangeName from './box/ChangeName.vue'
 import ChangeDescription from './box/ChangeDescription.vue'
-import Stock from './box/Stock.vue'
+import StockTab from './../StockTab.vue'
 
 export default {
     data() {
         return {
             box: {},
+
+            selected: {
+                stockItems: [],
+            },
 
             views: {
                 loading: true,
@@ -116,6 +174,13 @@ export default {
     },
     created() {
         this.loadBox()
+    },
+    computed: {
+        stockPrice() {
+            if(this.selected.stockItems.length) {
+                return this.selected.stockItems.reduce((n, {quantity, price}) => n + (quantity * price), 0)
+            }
+        }
     },
     methods: {
         loadBox() {
@@ -130,7 +195,7 @@ export default {
     components: {
         ChangeName,
         ChangeDescription,
-        Stock,
+        StockTab,
     }
 }
 </script>

@@ -30,7 +30,6 @@
 
 <script>
 export default {
-    props: ['box'],
     data() {
         return {
             items: [],
@@ -71,6 +70,10 @@ export default {
             this.$parent.selected.items.push({
                 id: item.id,
                 name: item.name,
+                pre_rub: item.latest_balance_pre_rub,
+                pre_usd: item.latest_balance_pre_usd,
+                price: item.latest_balance_price,
+                usd_kurs: item.latest_balance_usd_kurs,
                 quantity: 1,
             })
         },

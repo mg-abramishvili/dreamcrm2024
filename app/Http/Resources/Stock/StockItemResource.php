@@ -19,6 +19,9 @@ class StockItemResource extends JsonResource
             'needs_qty' => $this->needs->sum('quantity'),
             'latest_balance_date' => $latestBalance ? $latestBalance->date : null,
             'latest_balance_price' => $latestBalance ? $latestBalance->price : null,
+            'latest_balance_pre_usd' => $latestBalance ? $latestBalance->pre_usd : null,
+            'latest_balance_pre_rub' => $latestBalance ? $latestBalance->pre_rub : null,
+            'latest_balance_usd_kurs' => $latestBalance ? $latestBalance->usd_kurs : null,
         ];
     }
 }

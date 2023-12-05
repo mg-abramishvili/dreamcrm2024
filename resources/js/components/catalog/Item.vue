@@ -97,11 +97,14 @@
                 </div>
 
                 <div class="tab-pane" :class="{'show active': views.currentTab == 'stock'}">
-                    stock
+                    <StockTab :item="item" />
                 </div>
 
                 <div class="tab-pane" :class="{'show active': views.currentTab == 'price'}">
-                    price
+                    <div class="form-group">
+                        <label class="form-label">Себестоимость Склад</label>
+                        <input :value="stockPrice" type="number" class="form-control" disabled>
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,11 +114,16 @@
 <script>
 import ChangeName from './item/ChangeName.vue'
 import ChangeCategory from './item/ChangeCategory.vue'
+import StockTab from './StockTab.vue'
 
 export default {
     data() {
         return {
             item: {},
+
+            selected: {
+                stockItems: [],
+            },
 
             views: {
                 loading: true,
@@ -126,6 +134,13 @@ export default {
     },
     created() {
         this.loadItem()
+    },
+    computed: {
+        stockPrice() {
+            if(this.selected.stockItems.length) {
+                return this.selected.stockItems.reduce((n, {quantity, price}) => n + (quantity * price), 0)
+            }
+        }
     },
     methods: {
         loadItem() {
@@ -140,6 +155,7 @@ export default {
     components: {
         ChangeName,
         ChangeCategory,
+        StockTab,
     }
 }
 </script>
