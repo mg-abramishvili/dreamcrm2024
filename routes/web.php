@@ -38,6 +38,9 @@ Route::prefix("api")->middleware('auth')->group(function() {
     // USERS
     Route::get('users', [App\Http\Controllers\UserController::class, 'index']);
     Route::get('user/{id}', [App\Http\Controllers\UserController::class, 'user']);
+
+    // TEST
+    Route::get('test', [App\Http\Controllers\CatalogItemController::class, 'autoUpdatePrices']);
 });
 
 Route::get('{any}', function () {
