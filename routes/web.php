@@ -9,6 +9,8 @@ require __DIR__.'/auth.php';
 Route::prefix("api")->middleware('auth')->group(function() {
     // CRON
     Route::get('usd-update', [App\Http\Controllers\MainSettingController::class, 'autoUpdateUsdKurs']);
+    Route::get('boxes-price-update', [App\Http\Controllers\CatalogItemController::class, 'autoUpdatePrices']);
+    Route::get('catalog-items-price-update', [App\Http\Controllers\CatalogBoxController::class, 'autoUpdatePrices']);
 
     // AUTH
     Route::get('whoami', function () {
@@ -54,10 +56,6 @@ Route::prefix("api")->middleware('auth')->group(function() {
     // USERS
     Route::get('users', [App\Http\Controllers\UserController::class, 'index']);
     Route::get('user/{id}', [App\Http\Controllers\UserController::class, 'user']);
-
-    // TEST
-    Route::get('test', [App\Http\Controllers\CatalogItemController::class, 'autoUpdatePrices']);
-    Route::get('test2', [App\Http\Controllers\CatalogBoxController::class, 'autoUpdatePrices']);
 });
 
 Route::get('{any}', function () {

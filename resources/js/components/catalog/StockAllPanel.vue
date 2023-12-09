@@ -35,7 +35,7 @@ export default {
             items: [],
 
             searchInput: '',
-            
+
             views: {
                 loading: true,
             }
@@ -73,7 +73,7 @@ export default {
                 pre_rub: item.latest_balance_pre_rub,
                 pre_usd: item.latest_balance_pre_usd,
                 price: item.latest_balance_price,
-                usd_kurs: item.latest_balance_usd_kurs,
+                usd_kurs: this.$store.state.usdKurs ? Math.max(this.$store.state.usdKurs, item.latest_balance_usd_kurs) : item.latest_balance_usd_kurs,
                 quantity: 1,
             })
         },

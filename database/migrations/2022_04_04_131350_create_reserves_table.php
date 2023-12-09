@@ -16,7 +16,6 @@ class CreateReservesTable extends Migration
             $table->integer('pre_usd')->nullable();
             $table->integer('price');
             $table->integer('quantity');
-            $table->integer('price_total');
             $table->timestamps();
         });
     }

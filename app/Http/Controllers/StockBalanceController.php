@@ -13,7 +13,7 @@ class StockBalanceController extends Controller
 
     public function stockItemBalances(Request $request)
     {
-        return StockBalance::where('stock_item_id', $request->id)->get();
+        return StockBalance::where('stock_item_id', $request->id)->orderBy('date')->get();
     }
 
     public function balance($id)
@@ -31,7 +31,7 @@ class StockBalanceController extends Controller
         $stockBalance->usd_kurs = $request->usd_kurs;
         $stockBalance->pre_rub = $request->pre_rub;
         $stockBalance->pre_usd = $request->pre_usd;
-        $stockBalance->price = ceil($request->usd_kurs * $request->pre_usd);
+        $stockBalance->price = ceil($request->usd_kurs * $request->pre_usd + $request->pre_rub);
 
         $stockBalance->save();
     }
@@ -46,7 +46,7 @@ class StockBalanceController extends Controller
         $stockBalance->usd_kurs = $request->usd_kurs;
         $stockBalance->pre_rub = $request->pre_rub;
         $stockBalance->pre_usd = $request->pre_usd;
-        $stockBalance->price = ceil($request->usd_kurs * $request->pre_usd);
+        $stockBalance->price = ceil($request->usd_kurs * $request->pre_usd + $request->pre_rub);
 
         $stockBalance->save();
     }
