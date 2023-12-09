@@ -9,24 +9,19 @@ class Calculation extends Model
 {
     use HasFactory;
 
-    public function type()
+    public function box()
     {
-        return $this->belongsTo(CatalogType::class, 'catalog_type_id');
+        return $this->hasOne(CalculationBox::class);
     }
 
-    public function boxes()
+    public function items()
     {
-        return $this->belongsToMany(CatalogBox::class, 'calculation__catalog_box')->withPivot(['pre_rub', 'pre_usd', 'price', 'marzha', 'sborka']);
-    }
-
-    public function catalogItems()
-    {
-        return $this->belongsToMany(CatalogItem::class, 'calculation__catalog_item')->withPivot(['pre_rub', 'pre_usd', 'price']);
+        return $this->hasMany(CalculationItem::class);
     }
 
     public function delivery()
     {
-        return $this->belongsToMany(CalculationDelivery::class, 'calculation__calculation_delivery')->withPivot(['direction_from', 'direction_to', 'days', 'price']);
+        return $this->hasOne(CalculationDelivery::class);
     }
 
     public function user()

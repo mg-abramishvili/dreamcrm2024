@@ -9,9 +9,9 @@ class ProductionItem extends Model
 {
     use HasFactory;
 
-    public function reserves()
+    public function production()
     {
-        return $this->hasMany(Reserve::class);
+        return $this->belongsTo(Production::class);
     }
 
     public function stockItem()
@@ -19,9 +19,9 @@ class ProductionItem extends Model
         return $this->belongsTo(StockItem::class);
     }
 
-    public function production()
+    public function reserves()
     {
-        return $this->belongsTo(Production::class);
+        return $this->hasMany(Reserve::class);
     }
 
     public function stockNeeds()

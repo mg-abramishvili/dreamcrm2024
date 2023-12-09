@@ -1,6 +1,6 @@
 <template>
     <Loader v-if="views.loading" />
-    
+
     <button v-if="!views.loading"
         @click="add()"
         class="btn btn-primary mt-2 mb-3">
@@ -21,29 +21,22 @@
         <tbody>
             <tr v-for="balance in balances">
                 <td>
-                    {{ balance.date }}
+                    {{ $filters.date(balance.date) }}
                 </td>
                 <td>
                     {{ balance.quantity }}
                 </td>
                 <td>
-                    {{ balance.pre_rub }}
+                    {{ $filters.currencyRub(balance.pre_rub) }}
                 </td>
                 <td>
-                    {{ balance.pre_usd }}
+                    {{ $filters.currencyUsd(balance.pre_usd) }}
                     <small class="d-block text-muted">курс {{ balance.usd_kurs }}</small>
                 </td>
                 <td>
-                    {{ balance.price }}
+                    {{ $filters.currencyRub(balance.price) }}
                 </td>
                 <td class="text-end">
-                    <button @click="view(balance.id)" class="btn btn-sm btn-outline-primary me-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-                        </svg>
-                    </button>
-
                     <button @click="edit(balance.id)" class="btn btn-sm btn-outline-secondary me-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -63,7 +56,7 @@
     </table>
 
     <BalanceMaster v-if="views.balanceMaster"
-        :item_id="$parent.item_id"
+        :item_id="item_id"
         :balance_id="selected.balance"
     />
 </template>

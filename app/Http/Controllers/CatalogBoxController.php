@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\CatalogBox;
-use App\Models\MainSetting;
 use App\Http\Resources\Catalog\CatalogBoxResource;
 use App\Traits\Catalog\updateCatalogItemPrice;
+use App\Traits\getCurrentKurs;
 use Illuminate\Http\Request;
 
 class CatalogBoxController extends Controller
 {
-    use updateCatalogItemPrice;
+    use getCurrentKurs, updateCatalogItemPrice;
 
     public function index()
     {
@@ -26,11 +26,9 @@ class CatalogBoxController extends Controller
     {
         $boxes = CatalogBox::all();
 
-        $currentUsdKurs = MainSetting::find(1)->usd_kurs;
-
         foreach($boxes as $box)
         {
-            $this->updateCatalogItemPrice($box, $currentUsdKurs);
+            $this->updateCatalogItemPrice($box, $this->getCurrentKurs());
         }
     }
 }

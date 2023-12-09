@@ -42,7 +42,9 @@ Route::prefix("api")->middleware('auth')->group(function() {
 
     // STOCK BALANCES
     Route::get('stock-item/{id}/balances', [App\Http\Controllers\StockBalanceController::class, 'stockItemBalances']);
+    Route::post('stock-balances', [App\Http\Controllers\StockBalanceController::class, 'store']);
     Route::get('stock-balance/{id}', [App\Http\Controllers\StockBalanceController::class, 'balance']);
+    Route::put('stock-balance/{id}/update', [App\Http\Controllers\StockBalanceController::class, 'update']);
 
     // USERS
     Route::get('users', [App\Http\Controllers\UserController::class, 'index']);

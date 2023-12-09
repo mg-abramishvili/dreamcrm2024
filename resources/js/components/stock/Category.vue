@@ -31,7 +31,7 @@
                     <tr @click="goToItem(item.id)" v-for="item in category.items">
                         <td>{{ item.name }}</td>
                         <td :class="{'text-success': item.balance_qty > 0, 'text-more-muted': item.balance_qty == 0}">{{ item.balance_qty }}</td>
-                        <td>{{ item.latest_balance_price }} <small class="d-block text-muted">{{ item.latest_balance_date }}</small></td>
+                        <td>{{ $filters.currencyRub(item.latest_balance_price) }} <small class="d-block text-muted">{{ $filters.date(item.latest_balance_date) }}</small></td>
                         <td>{{ item.needs }}</td>
                     </tr>
                 </tbody>
