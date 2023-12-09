@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('main_settings', function (Blueprint $table) {
             $table->id();
-            $table->decimal('usd_kurs');
-            $table->date('usd_date');
+            $table->decimal('usd_kurs')->default(0.00);
+            $table->date('usd_date')->nullable();
             $table->integer('usd_cb')->default(0);
             $table->integer('usd_additional')->default(0);
             $table->integer('sborka_arenda');

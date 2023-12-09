@@ -12,6 +12,10 @@ Route::prefix("api")->middleware('auth')->group(function() {
         return Auth::user();
     });
 
+    // SETTINGS
+    Route::get('settings', [App\Http\Controllers\MainSettingController::class, 'index']);
+    Route::put('settings', [App\Http\Controllers\MainSettingController::class, 'update']);
+
     // CALCULATIONS
     Route::get('calculations', [App\Http\Controllers\CalculationController::class, 'index']);
     Route::post('calculations', [App\Http\Controllers\CalculationController::class, 'store']);

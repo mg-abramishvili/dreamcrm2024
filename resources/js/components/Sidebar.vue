@@ -1,5 +1,7 @@
 <template>
     <div class="sidebar">
+        {{ $store.state.user.name }}
+        
         <ul>
             <li>
                 <RouterLink :to="{name: 'Home'}">

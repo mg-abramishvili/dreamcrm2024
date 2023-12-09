@@ -10,7 +10,22 @@
 import Sidebar from './components/Sidebar.vue'
 
 export default {
+    created() {
+        this.checkMe()
+    },
     methods: {
+        checkMe() {
+            if(this.$store.state.user && this.$store.state.user.id) {
+                return
+            }
+            
+            axios.get('/api/whoami')
+            .then(response => {
+                if(response.data && response.data.id) {
+                    this.$store.commit('setUser', response.data)
+                }
+            })
+        },
         darkModeToggle() {
             let body = document.body
             let darkModeClass = 'dark-theme'
