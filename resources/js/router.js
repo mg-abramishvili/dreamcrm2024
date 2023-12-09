@@ -19,6 +19,8 @@ import StockItem from './components/stock/Item.vue'
 import Users from './components/users/Index.vue'
 import User from './components/users/User.vue'
 
+import Settings from './components/Settings/Edit.vue'
+
 const routes = [
     {
         path: '/',
@@ -84,6 +86,11 @@ const routes = [
         path: '/user/:id',
         name: 'User',
         component: User
+    },
+    {
+        path: '/settings',
+        name: 'Settings',
+        component: Settings
     },
 ];
 

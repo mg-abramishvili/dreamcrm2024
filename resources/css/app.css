@@ -223,6 +223,12 @@ main {
 	cursor: pointer;
 	color: #fd7b38 !important;
 }
+.content-simple {
+	background-color: #fff;
+	padding: 20px;
+	border: 1px solid #eeeae1;
+	border-radius: 8px;
+}
 .content-folders {
 	display: flex;
 	flex-wrap: wrap;
