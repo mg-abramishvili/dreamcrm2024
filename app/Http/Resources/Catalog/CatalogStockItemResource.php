@@ -3,7 +3,7 @@
 namespace App\Http\Resources\Catalog;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Dollar;
+use App\Models\MainSetting;
 use App\Traits\Stock\getLatestBalance;
 use App\Traits\Stock\compareKurs;
 use App\Traits\Stock\getPrice;
@@ -19,7 +19,7 @@ class CatalogStockItemResource extends JsonResource
         parent::__construct($resource);
         $this->resource = $resource;
 
-        $this->currentUsdKurs = Dollar::find(1)->kurs;
+        $this->currentUsdKurs = MainSetting::find(1)->usd_kurs;
     }
 
     public function toArray($request)

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CatalogBox;
-use App\Models\Dollar;
+use App\Models\MainSetting;
 use App\Http\Resources\Catalog\CatalogBoxResource;
 use App\Traits\Catalog\updateCatalogItemPrice;
 use Illuminate\Http\Request;
@@ -26,7 +26,7 @@ class CatalogBoxController extends Controller
     {
         $boxes = CatalogBox::all();
 
-        $currentUsdKurs = Dollar::find(1)->kurs;
+        $currentUsdKurs = MainSetting::find(1)->usd_kurs;
 
         foreach($boxes as $box)
         {
