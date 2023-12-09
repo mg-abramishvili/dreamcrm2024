@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 require __DIR__.'/auth.php';
 
 Route::prefix("api")->middleware('auth')->group(function() {
+    // CRON
+    Route::get('usd-update', [App\Http\Controllers\MainSettingController::class, 'autoUpdateUsdKurs']);
+
     // AUTH
     Route::get('whoami', function () {
         return Auth::user();

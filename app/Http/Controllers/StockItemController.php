@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StockItemRequest;
 use App\Models\StockItem;
 use App\Http\Resources\Stock\StockItemResource;
 use Illuminate\Http\Request;
@@ -19,8 +18,13 @@ class StockItemController extends Controller
         return new StockItemResource(StockItem::find($id));
     }
 
-    public function store(StockItemRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'category_id' => 'required',
+            'name' => 'required',
+        ]);
+
         $stockItem = new StockItem();
 
         $stockItem->category_id = $request->category_id;
@@ -30,13 +34,24 @@ class StockItemController extends Controller
         $stockItem->save();
     }
 
-    public function update($id, StockItemRequest $request)
+    public function update($id, Request $request)
     {
         $stockItem = StockItem::find($id);
 
-        $stockItem->category_id = $request->category_id;
-        $stockItem->name = $request->name;
-        $stockItem->comment = $request->comment;
+        if(isset($request->category_id))
+        {
+            $stockItem->category_id = $request->category_id;
+        }
+
+        if(isset($request->name))
+        {
+            $stockItem->name = $request->name;
+        }
+
+        if(isset($request->comment))
+        {
+            $stockItem->comment = $request->comment;
+        }
 
         $stockItem->save();
     }

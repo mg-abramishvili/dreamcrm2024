@@ -6,11 +6,11 @@
         </div>
         <div class="offcanvas-body">
             <Loader v-if="views.loading" />
-        
+
             <select v-if="!views.loading" v-model="selected.category" class="form-select">
                 <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
             </select>
-        
+
             <button v-if="!views.loading" @click="save()" class="btn btn-primary mt-2">Сохранить</button>
         </div>
     </div>
@@ -46,10 +46,22 @@ export default {
             })
         },
         save() {
-            console.log(this.newName)
+            if(!this.selected.category) {
+                return this.$toast.error("Укажите категорию")
+            }
 
-            this.$parent.views.editPanel = ''
-        }
+            axios.put(`/api/stock-item/${this.$parent.item.id}/update`, {
+                category_id: this.selected.category
+            })
+            .then(response => {
+                this.$parent.loadItem()
+
+                this.$parent.views.editPanel = ''
+            })
+            .catch(errors => {
+                return this.$toast.error(errors)
+            })
+        },
     },
 }
 </script>

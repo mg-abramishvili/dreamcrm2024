@@ -29,4 +29,24 @@ class MainSettingController extends Controller
             ]
         );
     }
+
+    public function autoUpdateUsdKurs()
+    {
+        $settings = MainSetting::find(1);
+
+        $currencies = simplexml_load_file("http://www.cbr.ru/scripts/XML_daily.asp");
+
+        foreach ($currencies->Valute as $currency) {
+            if ($currency["ID"] == 'R01235') {
+                $cb = round(str_replace(',','.',$currency->Value), 2);
+            }
+        }
+
+        if(isset($cb) && $cb > 0) {
+            $settings->usd_cb = $cb;
+            $settings->usd_kurs = round(str_replace(',','.',$cb + ($cb / 100 * $settings->usd_additional)), 2);
+            $settings->usd_date = date("Y-m-d", strtotime($currencies["Date"]));
+            $settings->save();
+        }
+    }
 }

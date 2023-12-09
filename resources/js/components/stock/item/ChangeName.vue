@@ -6,7 +6,7 @@
         </div>
         <div class="offcanvas-body">
             <input type="text" v-model="name" class="form-control">
-        
+
             <button @click="save()" class="btn btn-primary mt-2">Сохранить</button>
         </div>
     </div>
@@ -26,10 +26,22 @@ export default {
     },
     methods: {
         save() {
-            console.log(this.newName)
+            if(!this.name) {
+                return this.$toast.error("Укажите название")
+            }
 
-            this.$parent.views.editPanel = ''
-        }
+            axios.put(`/api/stock-item/${this.$parent.item.id}/update`, {
+                name: this.name
+            })
+            .then(response => {
+                this.$parent.loadItem()
+
+                this.$parent.views.editPanel = ''
+            })
+            .catch(errors => {
+                return this.$toast.error(errors)
+            })
+        },
     },
 }
 </script>
