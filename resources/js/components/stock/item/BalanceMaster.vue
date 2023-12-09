@@ -128,7 +128,7 @@ export default {
                 this.$parent.views.balanceMaster = false
             })
             .catch(errors => {
-                return this.$toast.error(errors.response.data ? errors.response.data : errors)
+                return this.$toast.error(errors)
             })
         },
     },

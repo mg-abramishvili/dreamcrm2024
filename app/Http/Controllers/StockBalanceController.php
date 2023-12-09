@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StockBalanceRequest;
 use App\Models\StockBalance;
 use App\Traits\getCurrentKurs;
 use Illuminate\Http\Request;
@@ -20,18 +21,8 @@ class StockBalanceController extends Controller
         return StockBalance::find($id);
     }
 
-    public function store(Request $request)
+    public function store(StockBalanceRequest $request)
     {
-        $request->validate([
-            'stock_item_id' => 'required',
-            'quantity' => 'required',
-            'date' => 'required',
-            'usd_kurs' => 'required',
-            'pre_rub' => 'required',
-            'pre_usd' => 'required',
-            'price' => 'required',
-        ]);
-
         $stockBalance = new StockBalance();
 
         $stockBalance->stock_item_id = $request->stock_item_id;
@@ -45,18 +36,8 @@ class StockBalanceController extends Controller
         $stockBalance->save();
     }
 
-    public function update($id, Request $request)
+    public function update($id, StockBalanceRequest $request)
     {
-        $request->validate([
-            'stock_item_id' => 'required',
-            'quantity' => 'required',
-            'date' => 'required',
-            'usd_kurs' => 'required',
-            'pre_rub' => 'required',
-            'pre_usd' => 'required',
-            'price' => 'required',
-        ]);
-
         $stockBalance = StockBalance::find($id);
 
         $stockBalance->stock_item_id = $request->stock_item_id;

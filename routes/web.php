@@ -38,7 +38,9 @@ Route::prefix("api")->middleware('auth')->group(function() {
 
     // STOCK ITEMS
     Route::get('stock-items', [App\Http\Controllers\StockItemController::class, 'index']);
+    Route::post('stock-items', [App\Http\Controllers\StockItemController::class, 'store']);
     Route::get('stock-item/{id}', [App\Http\Controllers\StockItemController::class, 'item']);
+    Route::put('stock-item/{id}/update', [App\Http\Controllers\StockItemController::class, 'update']);
 
     // STOCK BALANCES
     Route::get('stock-item/{id}/balances', [App\Http\Controllers\StockBalanceController::class, 'stockItemBalances']);
