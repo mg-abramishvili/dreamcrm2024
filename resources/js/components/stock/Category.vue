@@ -10,7 +10,11 @@
         </div>
 
         <div class="header-buttons">
-            <a href="#" class="btn btn-primary">Добавить</a>
+            <a
+                v-if="$store.getters.userHasPermission('stock', 'create')"
+                href="#" class="btn btn-primary">
+                    Добавить
+            </a>
         </div>
     </div>
 

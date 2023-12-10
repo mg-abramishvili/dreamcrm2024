@@ -22,7 +22,7 @@
                 <tbody>
                     <tr @click="goToItem(item.id)" v-for="item in category.items">
                         <td>{{ item.name }}</td>
-                        <td>{{ item.price }}</td>
+                        <td>{{ $filters.currencyRub(item.price) }}</td>
                     </tr>
                 </tbody>
             </table>

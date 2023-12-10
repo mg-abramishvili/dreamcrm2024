@@ -14,7 +14,7 @@ Route::prefix("api")->middleware('auth')->group(function() {
 
     // AUTH
     Route::get('whoami', function () {
-        return Auth::user();
+        return Auth::user()->load('permissions');
     });
 
     // SETTINGS
@@ -56,6 +56,8 @@ Route::prefix("api")->middleware('auth')->group(function() {
     // USERS
     Route::get('users', [App\Http\Controllers\UserController::class, 'index']);
     Route::get('user/{id}', [App\Http\Controllers\UserController::class, 'user']);
+    Route::put('user/{id}/update', [App\Http\Controllers\UserController::class, 'update']);
+    Route::put('user/{id}/permissions-update', [App\Http\Controllers\UserController::class, 'updatePermissions']);
 });
 
 Route::get('{any}', function () {

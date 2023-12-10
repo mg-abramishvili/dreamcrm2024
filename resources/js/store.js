@@ -16,6 +16,13 @@ const store = createStore({
             state.usdKurs = kurs
         },
     },
+    getters: {
+        userHasPermission: (state) => (permission, level) => {
+            let userPermissions = state.user.permissions
+
+            return !!(userPermissions && userPermissions[permission + '_' + level])
+        },
+    }
 })
 
 export default store

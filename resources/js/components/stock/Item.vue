@@ -43,6 +43,7 @@
                                 <strong>Название:</strong> {{ item.name }}
 
                                 <button
+                                    v-if="$store.getters.userHasPermission('stock', 'create')"
                                     @click="views.editPanel = 'name'"
                                     class="btn-content-edit">
                                 </button>
@@ -56,6 +57,7 @@
                                 <strong>Категория:</strong> {{ item.category_name }}
 
                                 <button
+                                    v-if="$store.getters.userHasPermission('stock', 'create')"
                                     @click="views.editPanel ='category'"
                                     class="btn-content-edit">
                                 </button>
