@@ -21,6 +21,12 @@ a {
 .dark-theme a {
 	color: #fff;
 }
+.text-muted {
+    color: rgba(33, 37, 41, 0.75) !important;
+}
+.dark-theme .text-muted {
+    color: #7F91A4 !important;
+}
 .btn-primary {
 	background-color: #fd7b38;
 	border-color: #fd7b38;
@@ -144,6 +150,10 @@ main {
 	border: 1px solid #eeeae1;
 	border-radius: 7px;
 }
+.dark-theme .header {
+    background-color: #242F3D;
+    border-color: #2C3743;
+}
 .header h1 {
 	font-size: 22px;
 	font-weight: 700;
@@ -204,7 +214,17 @@ main {
 .content th,
 .content thead,
 .content tr {
-	border-color: #eeeae1;
+    border-color: #eeeae1;
+}
+.dark-theme .content tbody,
+.dark-theme .content td,
+.dark-theme .content tfoot,
+.dark-theme .content th,
+.dark-theme .content thead,
+.dark-theme .content tr {
+    background-color: #242F3D;
+    color: #fff;
+    border-color: #2C3743;
 }
 .content .table tbody tr:last-child,
 .content .table tbody tr:last-child td {
@@ -249,6 +269,10 @@ main {
 	border: 1px solid #eeeae1;
 	font-weight: 500;
 }
+.dark-theme .content-folder a {
+    background-color: #242F3D;
+    border-color: #2C3743;
+}
 .content-folder a svg {
 	display: block;
 	width: 25px;
@@ -272,13 +296,27 @@ main {
 .content .nav-tabs {
 	border-bottom-color: #eeeae1;
 }
+.dark-theme .content .nav-tabs {
+    border-bottom-color: #2C3743;
+}
 .content .nav-tabs .nav-link {
 	color: #0e0e0e;
+}
+.dark-theme .content .nav-tabs .nav-link {
+    color: #fff;
 }
 .content .nav-tabs .nav-link.active {
 	border-top-color: #eeeae1;
 	border-left-color: #eeeae1;
 	border-right-color: #eeeae1;
+}
+.dark-theme .content .nav-tabs .nav-link.active {
+    border-color: #2C3743;
+    border-bottom-color: transparent;
+    background-color: #242F3D;
+}
+.dark-theme .content .nav-tabs .nav-link:hover {
+    border-color: #242F3D;
 }
 .content .tab-content {
 	background-color: #fff;
@@ -288,6 +326,10 @@ main {
 	border-bottom: 1px solid #eeeae1;
 	border-bottom-left-radius: 7px;
 	border-bottom-right-radius: 7px;
+}
+.dark-theme .content .tab-content {
+    background-color: #242F3D;
+    border-color: #2C3743;
 }
 .content .tab-content-line {
 	display: flex;
@@ -355,7 +397,7 @@ main {
 /* FONTS */
 @font-face {
 	font-family: 'PTRootUIWeb';
-	src: 
+	src:
 		url('../fonts/PT-Root-UI_Regular.woff2') format('woff2'),
 		url('../fonts/PT-Root-UI_Regular.woff') format('woff');
 	font-weight: normal;
@@ -363,7 +405,7 @@ main {
 }
 @font-face {
 	font-family: 'PTRootUIWeb';
-	src: 
+	src:
 		url('../fonts/pt-root-ui_medium.woff2') format('woff2'),
 		url('../fonts/pt-root-ui_medium.woff') format('woff');
 	font-weight: 500;
@@ -371,7 +413,7 @@ main {
 }
 @font-face {
 	font-family: 'PTRootUIWeb';
-	src: 
+	src:
 		url('../fonts/PT-Root-UI_Bold.woff2') format('woff2'),
 		url('../fonts/PT-Root-UI_Bold.woff') format('woff');
 	font-weight: bold;

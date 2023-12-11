@@ -96,6 +96,6 @@
             </li>
         </ul>
 
-        <!-- <button @click="$parent.darkModeToggle()">dark</button> -->
+         <button @click="$parent.darkModeToggle()">dark</button>
     </div>
 </template>
