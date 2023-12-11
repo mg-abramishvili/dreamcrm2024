@@ -33,21 +33,9 @@ export default {
             }
 
             axios.get('/api/settings')
-                .then(response => {
-                    this.$store.commit('setUsdKurs', response.data.usd_kurs)
-                })
-        },
-        darkModeToggle() {
-            let body = document.body
-            let darkModeClass = 'dark-theme'
-
-            if(!body.classList.contains(darkModeClass)) {
-                return body.classList.add(darkModeClass)
-            }
-
-            if(body.classList.contains(darkModeClass)) {
-                return body.classList.remove(darkModeClass)
-            }
+            .then(response => {
+                this.$store.commit('setUsdKurs', response.data.usd_kurs)
+            })
         },
     },
     components: {

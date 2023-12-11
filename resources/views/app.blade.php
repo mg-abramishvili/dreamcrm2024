@@ -9,7 +9,7 @@
 
         @vite('resources/css/app.css')
     </head>
-    <body>
+    <body @auth class="{{ session('theme') ? session('theme') . '-theme' : 'light-theme'  }}" @endauth>
         @auth
             <div id="app"></div>
         @endauth

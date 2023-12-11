@@ -21,6 +21,10 @@ Route::prefix("api")->middleware('auth')->group(function() {
     Route::get('settings', [App\Http\Controllers\MainSettingController::class, 'index']);
     Route::put('settings', [App\Http\Controllers\MainSettingController::class, 'update']);
 
+    // THEME SET
+    Route::get('theme', [App\Http\Controllers\SessionController::class, 'theme']);
+    Route::put('theme', [App\Http\Controllers\SessionController::class, 'themeSet']);
+
     // CALCULATIONS
     Route::get('calculations', [App\Http\Controllers\CalculationController::class, 'index']);
     Route::post('calculations', [App\Http\Controllers\CalculationController::class, 'store']);
